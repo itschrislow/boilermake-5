@@ -1,18 +1,20 @@
+/* express */
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
 
+/* body-parser */
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const hostname = "localhost";
-const port = process.env.PORT || 5000;
-// const io = require('socket.io').listen();
 
-// io.on('connection', (socket) => {
-//     res.send('user connected');
-// });
+const port = process.env.PORT || 5000;
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+io.on('joined', (message) => {
+    res.send('user connected' + message);
+});
 
 let user = [];
 let joblist = [];
