@@ -11,18 +11,24 @@ const port = 5000;
 const io = require('socket.io').listen();
 
 io.on('connection', (socket) => {
-    console.log('user connected');
+    res.send('user connected');
 });
 
 let user = [];
 let joblist = [];
 
-app.post('/login', (req, res) => {
-    console.log(req.body.jsonData);
+app.get('/', ())
 
+app.post('/login', (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
 
+    let info = {email: email, password: password};
+
+    res.send(info);
+
+    console.log("in");
+    /*
     let validUser = user.filter((email, password) => {
         user.email === email;
         user.password === password;
@@ -39,6 +45,7 @@ app.post('/login', (req, res) => {
         res.setHeader('Set-Authorization', token);
         res.ok().send({message: "Logged in!"});
     }
+    */
 });
 
 app.post('/signup', (req, res) => {
