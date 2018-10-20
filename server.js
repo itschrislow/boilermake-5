@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const hostname = "localhost";
-const port = 6999;
+const port = 5000;
 const io = require('socket.io').listen();
 
 io.on('connection', (socket) => {
