@@ -7,12 +7,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const hostname = "localhost";
-const port = 5000;
-const io = require('socket.io').listen();
+const port = process.env.PORT || 5000;
+// const io = require('socket.io').listen();
 
-io.on('connection', (socket) => {
-    res.send('user connected');
-});
+// io.on('connection', (socket) => {
+//     res.send('user connected');
+// });
 
 let user = [];
 let joblist = [];
@@ -104,6 +104,6 @@ app.post('/new-job', (req, res) => {
     });
 });
 
-app.listen(port, hostname, () => {
+app.listen(port, () => {
     console.log("Server is running.");
 })
