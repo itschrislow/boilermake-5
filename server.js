@@ -96,5 +96,5 @@ app.post('/new-job', (req, res) => {
 });
 
 app.listen(port, hostname, () => {
-    console.log("Server is running");
+    console.log("Server is running.");
 })
