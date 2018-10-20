@@ -18,8 +18,7 @@ let user = [];
 let joblist = [];
 
 app.post('/login', (req, res) => {
-    let details = req.body.details;
-    console.log(details);
+    console.log(req.body.jsonData);
 
     let email = req.body.email;
     let password = req.body.password;
