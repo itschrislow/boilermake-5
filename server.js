@@ -36,11 +36,10 @@ let joblist = [
     {title: "Babysitter", description: "Care for young children", details: "Weekends 9am - 3pm", contact: "7654330899"},
     {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am, 3pm", contact: "sarah@purdue.edu"}
 ];
-
 // remove when done
 app.get('/', (req, res) => {
     res.status(200).send({message: "Working"});
-})
+});
 
 app.post('/login', (req, res) => {
     let email = req.body.email;
