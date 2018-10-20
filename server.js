@@ -14,11 +14,19 @@ let users = [
     {email: "user0", password: "pw0"},
     {email: "user1", password: "pw1"}
 ];
-let joblist = [];
+
+let joblist = [
+    {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", contact: "1234567890"},
+    {title: "Tutor", description: "Calculus", details: "Weekends 6-7pm", contact: "9876543210"},
+];
 
 app.get('/', (req, res) => {
     res.status(200).send({message: "Working"});
 })
+
+app.get('/login', (req, res) => {
+    res.status(200).send({message: "Logged in!"});
+});
 
 app.post('/login', (req, res) => {
     let email = req.body.email;
@@ -67,36 +75,33 @@ app.get('/joblist', (req, res) => {
 });
 
 app.post('/new-job', (req, res) => {
-    if (!req.headers.authorization && req.headers.authorization === "null") {
+    if (!req.headers.authorization || req.headers.authorization === "null") {
         res.status(401).send({message: "Unauthorized!"});
     } else {
         let title = req.body.title;
         let desc = req.body.description;
-        let location = req.body.location;
-        let time = req.body.time;
-        let email = req.body.email;
-        let tel = req.body.tel;
+        let details = req.body.details;
+        let contact = req.body.contact;
         
         let newJob = {
             id: items.length,
             title: title,
             description: desc,
-            location: location,
-            time: time,
-            email: email,
-            tel: tel
+            details: details,
+            contact: contact
         };
         joblist.push(newJob);
         res.send(joblist);
     }
+});
 
-    app.get('/search', (req, res) => {
-        let title = req.query.title;
+app.get('/search', (req, res) => {
+    let title = req.query.title;
 
-        let job = joblist.filter(title => {
-
-        })
+    let job = joblist.filter(jobs => {
+        return jobs.title === title;
     });
+    res.send(job);
 });
 
 app.listen(port, () => {
