@@ -1,32 +1,46 @@
-/* express */
+/** express */
 const express = require('express');
 const app = express();
 
-/* body-parser */
+/** body-parser */
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-
 const port = process.env.PORT || 5000;
 
+/** port for heroku and localhost */
+// const MongoClient = require('mongodb').MongoClient;
+// const url = "mongodb+srv://boilermake2018:boilermake2018@cluster0-xubmh.mongodb.net/test?retryWrites=true"
+// const dbName = 'boilermake2018';
+
+// MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
+//     console.log("Connected to server.");
+//     const db = client.db(dbName);
+// });
+
+/** user database */
 let users = [
     {email: "user0", password: "pw0"},
-    {email: "user1", password: "pw1"}
+    {email: "user1", password: "pw1"},
+    {email: "user2", password: "pw2"},
+    {email: "user3", password: "pw3"},
+    {email: "user4", password: "pw4"}
 ];
 
+/** joblist */
 let joblist = [
-    {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", contact: "1234567890"},
-    {title: "Tutor", description: "Calculus", details: "Weekends 6-7pm", contact: "9876543210"},
+    {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", contact: "8194557860"},
+    {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", contact: "john@purdue.edu"},
+    {title: "Mechanic", description: "Fix basic household items", details: "Flexible - Contact for time.", contact: "3901116589"},
+    {title: "Babysitter", description: "Care for young children", details: "Weekends 9am - 3pm", contact: "7654330899"},
+    {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am, 3pm", contact: "sarah@purdue.edu"}
 ];
 
+// remove when done
 app.get('/', (req, res) => {
     res.status(200).send({message: "Working"});
 })
-
-app.get('/login', (req, res) => {
-    res.status(200).send({message: "Logged in!"});
-});
 
 app.post('/login', (req, res) => {
     let email = req.body.email;
@@ -37,7 +51,7 @@ app.post('/login', (req, res) => {
     });
 
     if (validUser.length === 0) {
-        return res.status(404).send({message: "User not found."});
+        res.status(404).send({message: "User not found."});
     } else {
         let token = "";
 
@@ -64,7 +78,8 @@ app.post('/signup', (req, res) => {
         email: email,
         password: password,
         tel: tel,
-        bio: bio
+        bio: bio,
+        rating: 0
     };
     users.push(newUser);
     res.send(users);
@@ -82,7 +97,7 @@ app.post('/new-job', (req, res) => {
         let desc = req.body.description;
         let details = req.body.details;
         let contact = req.body.contact;
-        
+
         let newJob = {
             id: items.length,
             title: title,
