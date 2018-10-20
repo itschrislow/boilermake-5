@@ -17,7 +17,9 @@ io.on('connection', (socket) => {
 let user = [];
 let joblist = [];
 
-app.get('/', ())
+app.get('/', (req, res) => {
+    res.status(200).send({message: "Working"});
+})
 
 app.post('/login', (req, res) => {
     let email = req.body.email;
