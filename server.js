@@ -12,11 +12,11 @@ const port = process.env.PORT || 5000;
 
 /** user database */
 let users = [
-    {email: "user0", password: "pw0"},
-    {email: "user1", password: "pw1"},
-    {email: "user2", password: "pw2"},
-    {email: "user3", password: "pw3"},
-    {email: "user4", password: "pw4"}
+    {id: 0, name: "Ann", email: "user0", password: "pw0", tel: "", rating: 5},
+    {id: 1, name: "Bob", email: "user1", password: "pw1", tel: "", rating: 4},
+    {id: 2, name: "Cay", email: "user2", password: "pw2", tel: "", rating: 3},
+    {id: 3, name: "Dan", email: "user3", password: "pw3", tel: "", rating: 2},
+    {id: 4, name: "Ean", email: "user4", password: "pw4", tel: "", rating: 1}
 ];
 
 /** joblist */
@@ -25,7 +25,7 @@ let joblist = [
     {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", name: "Carol", contact: "john@purdue.edu"},
     {title: "Mechanic", description: "Fix basic household items", name: "Bob", details: "Flexible - Contact for time.", contact: "3901116589"},
     {title: "Babysitter", description: "Care for young children", name: "Sarah", details: "Weekends 9am - 3pm", contact: "7654330899"},
-    {title: "Carpool", description: "To and fro Purdue and The Cottage", name: "Kristen", details: "Weekdays 9am, 3pm", contact: "sarah@purdue.edu"}
+    {title: "Carpool", description: "To and fro Purdue and The Cottage", name: "Kristen", details: "Weekdays 9am - 3pm", contact: "sarah@purdue.edu"}
 ];
 
 /** GET: joblist */
@@ -61,21 +61,17 @@ app.post('/login', (req, res) => {
 
 /** POST: signup */
 app.post('/signup', (req, res) => {
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
+    let name = req.body.name;
     let email = req.body.email;
     let password = req.body.password;
     let tel = req.body.tel;
-    let bio = req.body.bio;
 
     let newUser = {
-        id: user.length,
-        firstName: firstName,
-        lastName: lastName,
+        id: user.length + 1,
+        name: name,
         email: email,
         password: password,
         tel: tel,
-        bio: bio,
         rating: 0
     };
     users.push(newUser);
