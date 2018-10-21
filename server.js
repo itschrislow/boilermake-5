@@ -30,11 +30,11 @@ let users = [
 
 /** joblist */
 let joblist = [
-    {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", contact: "8194557860"},
-    {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", contact: "john@purdue.edu"},
-    {title: "Mechanic", description: "Fix basic household items", details: "Flexible - Contact for time.", contact: "3901116589"},
-    {title: "Babysitter", description: "Care for young children", details: "Weekends 9am - 3pm", contact: "7654330899"},
-    {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am, 3pm", contact: "sarah@purdue.edu"}
+    {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", name: "John", contact: "8194557860"},
+    {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", name: "Carol", contact: "john@purdue.edu"},
+    {title: "Mechanic", description: "Fix basic household items", name: "Bob", details: "Flexible - Contact for time.", contact: "3901116589"},
+    {title: "Babysitter", description: "Care for young children", name: "Sarah", details: "Weekends 9am - 3pm", contact: "7654330899"},
+    {title: "Carpool", description: "To and fro Purdue and The Cottage", name: "Kristen", details: "Weekdays 9am, 3pm", contact: "sarah@purdue.edu"}
 ];
 // remove when done
 app.get('/', (req, res) => {
@@ -85,12 +85,16 @@ app.post('/signup', (req, res) => {
 });
 
 app.get('/joblist', (req, res) => {
-    res.status(200).send(joblist);
+    if (!req.headers.authorization || req.headers.authorization == "null") {
+        res.status(401).send({message: "Unauthorized."});
+    } else {
+        res.status(200).send(joblist);
+    }
 });
 
 app.post('/new-job', (req, res) => {
     if (!req.headers.authorization || req.headers.authorization === "null") {
-        res.status(401).send({message: "Unauthorized!"});
+        res.status(401).send({message: "Unauthorized."});
     } else {
         let title = req.body.title;
         let desc = req.body.description;
@@ -102,20 +106,25 @@ app.post('/new-job', (req, res) => {
             title: title,
             description: desc,
             details: details,
+            name: name,
             contact: contact
         };
         joblist.push(newJob);
-        res.send(joblist);
+        res.status(200).send(joblist);
     }
 });
 
 app.get('/search', (req, res) => {
-    let title = req.query.title;
+    if (!req.headers.authorization || req.headers.authorization == "null") {
+        res.status(401).send({message: "Unauthorized."});
+    } else {
+        let title = req.query.title;
 
-    let job = joblist.filter(jobs => {
-        return jobs.title === title;
-    });
-    res.send(job);
+        let job = joblist.filter(jobs => {
+            return jobs.title === title;
+        });
+        res.status(200).send(job);
+    }
 });
 
 app.listen(port, () => {
