@@ -57,7 +57,7 @@ app.post('/login', (req, res) => {
     if (validUser.length === 0) {
         res.status(404).send({message: "User not found."});
     } else {
-        res.status(200).send({message: "Logged in!"});
+        res.status(200).send(validUser);
     }
 });
 
