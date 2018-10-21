@@ -12,11 +12,11 @@ const port = process.env.PORT || 5000;
 
 /** user database */
 let users = [
-    {id: 0, name: "Ann", email: "user0", password: "pw0", tel: "", rating: 5},
-    {id: 1, name: "Bob", email: "user1", password: "pw1", tel: "", rating: 4},
-    {id: 2, name: "Cay", email: "user2", password: "pw2", tel: "", rating: 3},
-    {id: 3, name: "Dan", email: "user3", password: "pw3", tel: "", rating: 2},
-    {id: 4, name: "Ean", email: "user4", password: "pw4", tel: "", rating: 1}
+    {id: 0, name: "Ann", email: "user0", password: "pw0", tel: "111", rating: 5},
+    {id: 1, name: "Bob", email: "user1", password: "pw1", tel: "222", rating: 4},
+    {id: 2, name: "Cay", email: "user2", password: "pw2", tel: "333", rating: 3},
+    {id: 3, name: "Dan", email: "user3", password: "pw3", tel: "444", rating: 2},
+    {id: 4, name: "Ean", email: "user4", password: "pw4", tel: "555", rating: 1}
 ];
 
 /** joblist */
@@ -24,8 +24,10 @@ let joblist = [
     {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", name: "John", contact: "8194557860"},
     {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", name: "Carol", contact: "john@purdue.edu"},
     {title: "Mechanic", description: "Fix basic household items", details: "Flexible - Contact for time.", name: "Bob", contact: "3901116589"},
-    {title: "Babysitter", description: "Care for young children", details: "Weekends 9am - 3pm", name: "Sarah", contact: "7654330899"},
-    {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am - 3pm", name: "Kristen", contact: "sarah@purdue.edu"}
+    {title: "Babysitter", description: "Care for young children", details: "Weekends 12am - 6pm", name: "Sarah", contact: "7654330899"},
+    {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am - 3pm", name: "Kristen", contact: "sarah@purdue.edu"},
+    {title: "Barber", description: "Men's style", details: "Weekdays 1-3pm", name: "Jim", contact: "8194557860"},
+    {title: "Tutor", description: "English", details: "Monday 4-6pm", name: "Jane", contact: "7445681190"}
 ];
 
 /** GET: joblist */
@@ -81,14 +83,14 @@ app.post('/signup', (req, res) => {
 /** POST: new-job */
 app.post('/new-job', (req, res) => {
     let title = req.body.title;
-    let desc = req.body.description;
+    let description = req.body.description;
     let details = req.body.details;
+    let name = req.body.name;
     let contact = req.body.contact;
 
     let newJob = {
-        id: items.length,
         title: title,
-        description: desc,
+        description: description,
         details: details,
         name: name,
         contact: contact
