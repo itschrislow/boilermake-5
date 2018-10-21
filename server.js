@@ -85,11 +85,7 @@ app.post('/signup', (req, res) => {
 });
 
 app.get('/joblist', (req, res) => {
-    if (!req.headers.authorization || req.headers.authorization == "null") {
-        res.status(401).send({message: "Unauthorized."});
-    } else {
-        res.status(200).send(joblist);
-    }
+    res.status(200).send(joblist);
 });
 
 app.post('/new-job', (req, res) => {
