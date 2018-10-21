@@ -96,7 +96,7 @@ app.post('/new-job', (req, res) => {
         contact: contact
     };
     joblist.push(newJob);
-    res.status(200).send(joblist);
+    res.status(200).send({message: "Job added!"});
 });
 
 app.listen(port, () => {
