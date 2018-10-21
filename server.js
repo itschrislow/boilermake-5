@@ -23,9 +23,9 @@ let users = [
 let joblist = [
     {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", name: "John", contact: "8194557860"},
     {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", name: "Carol", contact: "john@purdue.edu"},
-    {title: "Mechanic", description: "Fix basic household items", name: "Bob", details: "Flexible - Contact for time.", contact: "3901116589"},
-    {title: "Babysitter", description: "Care for young children", name: "Sarah", details: "Weekends 9am - 3pm", contact: "7654330899"},
-    {title: "Carpool", description: "To and fro Purdue and The Cottage", name: "Kristen", details: "Weekdays 9am - 3pm", contact: "sarah@purdue.edu"}
+    {title: "Mechanic", description: "Fix basic household items", details: "Flexible - Contact for time.", name: "Bob", contact: "3901116589"},
+    {title: "Babysitter", description: "Care for young children", details: "Weekends 9am - 3pm", name: "Sarah", contact: "7654330899"},
+    {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am - 3pm", name: "Kristen", contact: "sarah@purdue.edu"}
 ];
 
 /** GET: joblist */
