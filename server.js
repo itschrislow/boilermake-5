@@ -21,13 +21,13 @@ let users = [
 
 /** joblist */
 let joblist = [
-    {title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", name: "John", contact: "8194557860"},
-    {title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", name: "Carol", contact: "john@purdue.edu"},
-    {title: "Mechanic", description: "Fix basic household items", details: "Flexible - Contact for time.", name: "Bob", contact: "3901116589"},
-    {title: "Babysitter", description: "Care for young children", details: "Weekends 12am - 6pm", name: "Sarah", contact: "7654330899"},
-    {title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am - 3pm", name: "Kristen", contact: "sarah@purdue.edu"},
-    {title: "Barber", description: "Men's style", details: "Weekdays 1-3pm", name: "Jim", contact: "8194557860"},
-    {title: "Tutor", description: "English", details: "Monday 4-6pm", name: "Jane", contact: "7445681190"}
+    {id: 0, title: "Plumber", description: "Fix leaks", details: "Weekdays 1-3pm", name: "John", contact: "8194557860"},
+    {id: 1, title: "Tutor", description: "Calculus", details: "Weekends 6-8pm", name: "Carol", contact: "john@purdue.edu"},
+    {id: 2, title: "Mechanic", description: "Fix basic household items", details: "Flexible - Contact for time.", name: "Bob", contact: "3901116589"},
+    {id: 3, title: "Babysitter", description: "Care for young children", details: "Weekends 12am - 6pm", name: "Sarah", contact: "7654330899"},
+    {id: 4, title: "Carpool", description: "To and fro Purdue and The Cottage", details: "Weekdays 9am - 3pm", name: "Kristen", contact: "sarah@purdue.edu"},
+    {id: 5, title: "Barber", description: "Men's style", details: "Weekdays 1-3pm", name: "Jim", contact: "8194557860"},
+    {id: 6, title: "Tutor", description: "English", details: "Monday 4-6pm", name: "Jane", contact: "7445681190"}
 ];
 
 /** GET: joblist */
@@ -69,7 +69,7 @@ app.post('/signup', (req, res) => {
     let tel = req.body.tel;
 
     let newUser = {
-        id: user.length + 1,
+        id: users.length,
         name: name,
         email: email,
         password: password,
@@ -89,6 +89,7 @@ app.post('/new-job', (req, res) => {
     let contact = req.body.contact;
 
     let newJob = {
+        id: joblist.length,
         title: title,
         description: description,
         details: details,
