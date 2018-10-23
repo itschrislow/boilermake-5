@@ -30,10 +30,6 @@ let joblist = [
     {id: 6, title: "Tutor", description: "English", details: "Monday 4-6pm", name: "Jane", contact: "7445681190"}
 ];
 
-app.get('/users', (req, res) => {
-    res.send(users);
-});
-
 /** GET: joblist */
 app.get('/joblist', (req, res) => {
     res.status(200).send(joblist);
